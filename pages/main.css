@@ -24,8 +24,6 @@ Pre-Requisite
 body {
 	font-family: 'Kumbh Sans', sans-serif;
 	font-family: 'Outfit', sans-serif;
-	/*width: 100vw;
-	height: 100vh;*/
 	overflow-x: hidden;
 }
 
@@ -88,7 +86,7 @@ Navigations, logos and icons
 .logo-nav a {
 	text-decoration: none;
 	color: var(--grayish-blue);
-	padding: 2.85rem 0;
+	padding: 2.25rem 0;
 }
 
 .logo-nav a:hover {
@@ -105,6 +103,10 @@ Navigations, logos and icons
 	position: relative;
 }
 
+.cart-avatar .cart-only {
+	position: relative;
+}
+
 .cart-avatar .cart-only img {
 	width: 30px;
 }
@@ -113,6 +115,28 @@ Navigations, logos and icons
 	cursor: pointer;
 }
 
+.cart-only .cart-count {
+	position: absolute;
+	z-index: 1;
+	width: 25px;
+	height: 17.5px;
+	font-size: 13px;
+	font-weight: 800;
+	color: #fff;
+	text-align: center;
+	background: var(--orange);
+	border-radius: 47%;
+	top: -5px;
+	right: -10px;
+}
+
+.hide-cart-count {
+	display: none;
+}
+
+.show-cart-count {
+	display: block;
+}
 
 .cart-avatar > img {
 	width: 30px;
@@ -131,29 +155,71 @@ Navigations, logos and icons
 }
 
 .cart-active {
-	display: none;
+	display: flex;
 	flex-direction: column;
 	position: absolute;
 	width: 280px;
 	height: 220px;
-	top: 60px;
+	margin-right: 35px;
+	top: 35px;
 	right: -40px;
-	background-color: var(--orange);
+	background-color: var(--lightGrayish-blue);
 }
 
-.cart-avatar .top {
+.cart-active:hover >  .top {
+	display: flex;
+}
+
+.cart-active .top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	color: var(--black-opacity);
-	font-size: 17px;
+	font-size: 15px;
 	font-weight: bolder;
 	border-bottom: solid 1px gainsboro;
 	padding: 10px;
 }
 
-.cart-active .bottom {
-	flex-grow: 1;
+.cart-active .top .cart-summary {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	gap: 5px;
+}
+
+.cart-active .bottom {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
+	min-height: 175px;
+}
+
+.bottom .current-cart-content {
+	flex-grow: 1;
+	overflow-y: auto;
+}
+
+.bottom .checkout {
+	flex-basis: 25%;
+	display: none;
+	justify-content: center;
+	width: 100%;
+}
+
+.bottom .checkout > button {
+	width: 90%;
+	height: 45px;
+	background-color: var(--orange);
+	color: var(--white);
+	font-size: 16px;
+	font-weight: 700;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	border-radius: 10px;
 }
 
 
@@ -173,7 +239,8 @@ Product Information
 	height: 300px;
 }
 
-.full-display img {
+.full-display > img {
+	/*display: none;*/
 	width: 100%;
 	height: auto;
 	border-radius: 17.5px;
@@ -196,14 +263,24 @@ Product Information
 	cursor: pointer;
 }
 
-.thumbnails img:first-child {
-	opacity: 0.45;
-	border: solid 2.5px var(--orange);
-}
-
 .thumbnails img:hover {
 	opacity: 0.3;
 }
+
+.hide {
+	display: none;
+}
+
+.show {
+	display: block;
+}
+
+.active-thumbnail {
+	opacity: 0.45 !important;
+	border: solid 2.5px var(--orange);
+}
+
+
 
 
 /*
@@ -213,11 +290,9 @@ Product Desciption, Carting & Shopping
 .product {
 	display: flex;
 	flex-grow: 1;
-	/*width: 1000px;*/
 	gap: 125px;
 	justify-content: center;
 	align-items: center;
-	/*margin: 3.5rem auto;*/
 }
 
 .product-details {
@@ -275,6 +350,7 @@ Product Desciption, Carting & Shopping
 	width: 50px;
 	height: 25px;
 	text-align: center;
+	padding-top: 4px;
 	font-weight: bolder;
 	border-radius: 7.5px;
 }
@@ -336,7 +412,65 @@ Product Desciption, Carting & Shopping
 	opacity: 0.5;
 }
 
+/*Manipulative classes in JS*/
 
+/*.show-product-in-cart {
+	width: 40px;
+	height: 40px;
+	border-radius: 5px;
+}*/
+
+.testout {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 250px;
+	height: 50px;
+	border: 0.5px solid var(--darkGray-blue);
+    padding: 1px;
+    margin-bottom: 1px;
+    border-radius: 7.5px;
+}
+
+.testout > img:nth-of-type(1) {
+	height: 80%;
+	border-radius: 5px;
+}
+
+.testout .details {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 10px;
+	color: var(--dark-blue);
+}
+
+.cart-product-name {
+	font-weight: unset;
+}
+
+.text-price {
+	opacity: 0.7;
+}
+
+.output-price {
+	font-weight: bolder;
+	opacity: 1;
+}
+
+.hide-default-cart-display {
+	display: none;
+}
+
+.show-default-cart-display {
+	display: initial;
+}
+
+.show-flex {
+	display: flex !important;
+}
+
+/*Media Queries*/
 
 @media screen and (max-width: 1015px) {
 	.brand-info {
@@ -362,7 +496,7 @@ Product Desciption, Carting & Shopping
 
 @media screen and (max-width: 720px) {
 	.logo-nav nav {
-		display: none;
+		/*display: none;*/
 		position: fixed;
 		width: 100%;
 		height: 100vh;
@@ -370,6 +504,10 @@ Product Desciption, Carting & Shopping
 		left: 0;
 		top: 0;
 		z-index: 1;
+	}
+
+	.open {
+		display: block !important;
 	}
 
 	.logo-nav nav ul {
@@ -388,6 +526,10 @@ Product Desciption, Carting & Shopping
 		height: unset;
 		font-weight: 700;
 		color: var(--black-opacity);
+	}
+
+	.logo-nav a {
+		color: black;
 	}
 
 	.logo-nav nav img {
